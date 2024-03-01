@@ -1,0 +1,54 @@
+@import url("https://fonts.cdnfonts.com/css/graphik-trial");
+
+.Header {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      gap: 30px;
+
+      li {
+        a {
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 400;
+          color: #000000;
+          font-family: "Graphik Trial", sans-serif;
+        }
+
+        .korpusLink {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .Logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .searchNLang {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    .searchNBasket {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+}
