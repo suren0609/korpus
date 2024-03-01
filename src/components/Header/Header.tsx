@@ -21,11 +21,14 @@ const Header = () => {
             <a href="#">About</a>
           </li>
           <li>
+            <a href="#">Shop</a>
+          </li>
+          <li>
             <a href="#">Carriers</a>
           </li>
         </ul>
       </nav>
-      <div className={styles.Logo}><Logo /></div>
+      <Link to="/" className={styles.Logo}><Logo /></Link>
       
       <div className={styles.searchNLang}>
         <div className={styles.searchNBasket}>
