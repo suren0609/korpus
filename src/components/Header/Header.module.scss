@@ -25,6 +25,10 @@
           font-weight: 400;
           color: #000000;
           font-family: "Graphik Trial", sans-serif;
+
+          &:hover {
+            opacity: 0.8;
+          }
         }
 
         .korpusLink {
@@ -50,6 +54,68 @@
       display: flex;
       align-items: center;
       gap: 20px;
+
+      .search {
+        cursor: pointer;
+      }
+
+      .face {
+        cursor: pointer;
+      }
+
+      .basket {
+        cursor: pointer;
+      }
+    }
+
+    .lang {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      position: relative;
+
+      .selected {
+        width: 80px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #000000;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .langList {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        position: absolute;
+        background: white;
+        top: 120%;
+        right: 0;
+        padding: 5px;
+        width: 100px;
+        border-radius: 5px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.096);
+
+        .langItem {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          color: #000000;
+          cursor: pointer;
+          padding: 2.5px 0;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
     }
   }
 }

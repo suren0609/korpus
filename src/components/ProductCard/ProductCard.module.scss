@@ -1,0 +1,55 @@
+.card {
+  width: 330px;
+  height: 374px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10px;
+  border-left: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+
+  &:last-child {
+    border-right: unset;
+  }
+
+  .cardTop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cardBottom {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      color: #414141;
+    }
+
+    .nameNCost {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h4 {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1a1a1a;
+        margin: 0;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #1a1a1a;
+        margin: 0;
+      }
+    }
+  }
+}

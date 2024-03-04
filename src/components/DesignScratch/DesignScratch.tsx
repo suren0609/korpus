@@ -1,8 +1,11 @@
-import React from "react";
-import cardImg from "../../assets/Mask group (1).png";
+import React, { FC } from "react";
 import styles from "./DesignScratch.module.scss";
 
-const DesignScratch = () => {
+interface IProps {
+  cardImg: string;
+}
+
+const DesignScratch: FC<IProps> = ({ cardImg }) => {
   return (
     <div className={styles.DesignScratch}>
       <img src={cardImg} alt="" />

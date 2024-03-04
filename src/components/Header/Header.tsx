@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { NavLink as Link } from "react-router-dom";
 import Logo from "../Logo";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { setLanguage } from "../../store/slices/languageSlice";
 
 const Header = () => {
+  const [isLangActive, setLangActive] = useState<boolean>(false);
+
+  const { language } = useSelector((state: RootState) => state.language);
+
+  const languages = ["English", "Armenian", "Russian"];
+
+  const dispatch = useDispatch();
+
+  const showLangHandler = () => {
+    setLangActive((prev) => !prev);
+  };
+
+  const hideLanguagesPopup = (e: any) => {
+    console.log(e.relatedTarget?.dataset?.name);
+
+    if (e.relatedTarget?.dataset?.name === "insidePopup") {
+      return;
+    }
+
+    setLangActive(false);
+  };
+
+  const changeLang = (l: string) => {
+    dispatch(setLanguage(l));
+    setLangActive(false);
+  };
+
   return (
     <div className={styles.Header}>
       <nav>
@@ -15,7 +45,9 @@ const Header = () => {
             <a href="#">Facade</a>
           </li>
           <li>
-            <a className={styles.korpusLink} href="#">Korpus</a>
+            <Link className={styles.korpusLink} to="/korpuses">
+              Korpus
+            </Link>
           </li>
           <li>
             <a href="#">About</a>
@@ -28,8 +60,10 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <Link to="/" className={styles.Logo}><Logo /></Link>
-      
+      <Link to="/" className={styles.Logo}>
+        <Logo />
+      </Link>
+
       <div className={styles.searchNLang}>
         <div className={styles.searchNBasket}>
           <div className={styles.search}>
@@ -75,7 +109,31 @@ const Header = () => {
             </svg>
           </div>
         </div>
-        <div className={styles.lang}>English</div>
+        <div className={styles.lang} onBlur={hideLanguagesPopup} tabIndex={0}>
+          <button className={styles.selected} onClick={showLangHandler}>
+            {language}
+          </button>
+          {isLangActive && (
+            <div
+              data-name="insidePopup"
+              tabIndex={0}
+              className={styles.langList}
+            >
+              {languages.map((lang, i) => (
+                <div
+                  onClick={() => changeLang(lang)}
+                  key={i}
+                  className={styles.langItem}
+                  tabIndex={0}
+                  data-name="insidePopup"
+                  style={{ fontWeight: language === lang ? "500" : "400" }}
+                >
+                  {lang}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

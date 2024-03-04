@@ -1,0 +1,134 @@
+.KorpusesPage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 60px;
+
+  .korpusesHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #e4e4e4;
+    padding: 10px 0;
+
+    h5 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #000000;
+      margin: 0;
+    }
+
+    .categories {
+      ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+
+        li {
+          a {
+            font-size: 14px;
+            font-weight: 400;
+            color: #000000;
+            text-decoration: none;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .korpusesBody {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    border-top: 1px solid #e4e4e4;
+
+    .filtersBlock {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 230px;
+
+      h5 {
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+        border-bottom: 1px solid #e4e4e4;
+      }
+
+      .filterList {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #e4e4e4;
+
+        li {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 0 13px 0 0;
+          margin: 2px 0;
+          cursor: pointer;
+
+          .filterName {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            cursor: pointer;
+          }
+
+          span {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000000;
+          }
+
+          ul {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            padding-left: 0;
+          }
+        }
+      }
+
+      .clearFilters {
+        background: transparent;
+        border: none;
+        outline: none;
+        text-decoration: underline;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        color: #1a1a1a;
+        padding: 10px 0;
+      }
+    }
+
+    .productsBlock {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+  }
+}
