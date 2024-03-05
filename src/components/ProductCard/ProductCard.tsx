@@ -1,5 +1,6 @@
 import React from "react";
 import img1 from "../../assets/image 32.png";
+import { NavLink as Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 
 const ProductCard = () => {
@@ -32,7 +33,12 @@ const ProductCard = () => {
       <div className={styles.cardBottom}>
         <p>Kitchen</p>
         <div className={styles.nameNCost}>
-          <h4>Maximera</h4>
+          <Link
+            to="/Suren/korpus/korpuses/details"
+            className={styles.prodTitle}
+          >
+            Maximera
+          </Link>
           <p>23,000AMD</p>
         </div>
       </div>

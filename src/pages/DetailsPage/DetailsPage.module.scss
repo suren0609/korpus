@@ -1,0 +1,237 @@
+.DetailsPage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 21px;
+
+  .detailsHead {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+    padding: 10px 0;
+
+    .backBtn {
+      background: transparent;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      span {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .detailsBody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+
+    .imgsAndDetails {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+
+      .imgs {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .info {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 490px;
+
+        .titleCodePrice {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          border-bottom: 1px solid #c6c6c6;
+
+          h3 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin: 0 0 5px 0;
+            line-height: 16px;
+          }
+
+          .code {
+            font-size: 12px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin: 5px 0;
+          }
+
+          .desc {
+            font-size: 12px;
+            font-weight: 400;
+            color: #747474;
+            margin: 5px 0;
+          }
+
+          .price {
+            font-size: 18px;
+            font-weight: 400;
+            color: #171717;
+            margin: 5px 0 10px 0;
+          }
+        }
+
+        .detailInfo {
+          padding: 0;
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          border-bottom: 1px solid #c6c6c6;
+          padding-bottom: 5px;
+
+          ul {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 5px 0;
+
+              span {
+                font-size: 14px;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+
+        .damperBlock {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          padding: 10px 0;
+          border-bottom: 1px solid #c6c6c6;
+
+          .damperInfo {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            height: 120px;
+            margin-left: 10px;
+
+            .infoTop {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
+
+              h3 {
+                font-size: 14px;
+                font-weight: 500;
+                color: #1a1a1a;
+                margin: 0;
+              }
+
+              .priceWithDamper {
+                font-size: 14px;
+                font-weight: 400;
+                color: #1a1a1a;
+                margin: 0;
+              }
+
+              .damperDesc {
+                font-size: 12px;
+                font-weight: 400;
+                color: #747474;
+                margin: 10px 0;
+                max-width: 295px;
+              }
+            }
+
+            .addToCard {
+              border: none;
+              background: transparent;
+              outline: none;
+              color: #000000;
+              cursor: pointer;
+              font-size: 13px;
+              font-weight: 500;
+              text-decoration: underline;
+              padding: 0;
+            }
+          }
+        }
+
+        .countAndAdd {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          .count {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .incDecBtn {
+              border: none;
+              outline: none;
+              background: transparent;
+              font-size: 29px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 20px;
+            }
+
+            span {
+              font-size: 20px;
+              font-weight: 500;
+              color: #1a1a1a;
+            }
+          }
+
+          .addCardBtn {
+            width: 190px;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            border: none;
+            border-bottom: 1px solid #000000;
+            outline: none;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

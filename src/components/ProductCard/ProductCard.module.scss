@@ -29,6 +29,7 @@
       font-size: 12px;
       font-weight: 400;
       color: #414141;
+      margin: 0;
     }
 
     .nameNCost {
@@ -37,11 +38,13 @@
       align-items: center;
       justify-content: space-between;
 
-      h4 {
+      .prodTitle {
         font-size: 14px;
         font-weight: 500;
         color: #1a1a1a;
         margin: 0;
+        text-decoration: none;
+        
       }
 
       p {

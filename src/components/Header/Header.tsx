@@ -45,7 +45,7 @@ const Header = () => {
             <a href="#">Facade</a>
           </li>
           <li>
-            <Link className={styles.korpusLink} to="/korpuses">
+            <Link className={styles.korpusLink} to="/Suren/korpus/korpuses">
               Korpus
             </Link>
           </li>
@@ -60,7 +60,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <Link to="/" className={styles.Logo}>
+      <Link to="/Suren/korpus/" className={styles.Logo}>
         <Logo />
       </Link>
 
