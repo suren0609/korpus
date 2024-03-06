@@ -5,6 +5,9 @@ import img3 from "../../assets/Image (5).png";
 import damperImg from "../../assets/Item Photo.png";
 import styles from "./DetailsPage.module.scss";
 import { useNavigate } from "react-router-dom";
+import schemeImg from "../../assets/scheme.png";
+import detail1Img from "../../assets/Imagedetail1.png";
+import detail2Img from "../../assets/Imagedetail2.png";
 
 const DetailsPage = () => {
   const [itemCount, setItemCount] = useState<number>(1);
@@ -14,12 +17,15 @@ const DetailsPage = () => {
   };
 
   const decrement = () => {
-    if (itemCount === 1) {
+    if (itemCount <= 1) {
+      setItemCount(1);
       return;
     }
 
     setItemCount((prev) => prev - 1);
   };
+
+  console.log(itemCount);
 
   const navigate = useNavigate();
   return (
@@ -181,7 +187,14 @@ const DetailsPage = () => {
                     </svg>
                   )}
                 </button>
-                <span>{itemCount}</span>
+                {/* <span>{itemCount}</span> */}
+                <input
+                  type="number"
+                  value={itemCount}
+                  onChange={(e: any) => setItemCount(Number(e.target.value))}
+                  min={1}
+                  max={1000}
+                />
                 <button onClick={increment} className={styles.incDecBtn}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -198,6 +211,133 @@ const DetailsPage = () => {
                 </button>
               </div>
               <button className={styles.addCardBtn}>Add to card</button>
+            </div>
+          </div>
+        </div>
+        <div className={styles.schemeBlock}>
+          <img src={schemeImg} alt="" />
+          <img src={schemeImg} alt="" />
+          <img src={schemeImg} alt="" />
+        </div>
+        <div className={styles.doorsBlock}>
+          <div className={styles.txtBlock}>
+            <h3>Wood base cabinet for sink with doors, white/gray frame</h3>
+            <span>Material: Wood</span>
+            <span>Color: Beige</span>
+            <span>Height: 32x32”</span>
+            <span>Width: 40x40”</span>
+            <p>
+              Extending the lifetime of our products is the single most
+              important factor we can do to fight climate change. With smart
+              tech being built into loudspeakers of today they become quickly
+              outdated.
+            </p>
+            <button className={styles.assemblyBtn}>
+              Assembly instructions{" "}
+            </button>
+          </div>
+        </div>
+        <div className={styles.viewSectionsBlock}>
+          <div className={styles.viewControls}>
+            <div className={styles.control}>
+              <span className={styles.active}>Product Details</span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+            </div>
+            <div className={styles.control}>
+              <span>What’s Included</span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
+                    fill="#A3A3A3"
+                  />
+                </svg>
+              </span>
+            </div>
+            <div className={styles.control}>
+              <span>Measurements</span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
+                    fill="#A3A3A3"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div className={styles.views}>
+            {/* <div className={styles.prodDetails}>
+              <h4>Product Details</h4>
+              <p>
+                With gray as a base, you create a warm and cozy feeling. Perfect
+                if you want a discreet color that goes with everything. Modern
+                or classic – you decide the style. <br />
+                <br />
+                Designed for sink and faucet with space for piping in the back
+                of the cabinet. The unique wedge dowels make assembly easy and
+                the fittings are nearly invisible. <br />
+                <br />
+                Choose to have the legs visible or hide them behind ENHET plinth
+                for a more uniform expression and easier cleaning. <br />
+                <br />
+                10-year Limited Warranty. Read about the terms in the Limited
+                Warranty brochure.
+              </p>
+            </div> */}
+            <div className={styles.whatsIncluded}>
+              <h4>What’s included</h4>
+              <p>
+                This product is made up of more than one component. You can find
+                the details of these components below.
+              </p>
+              <div className={styles.detail1}>
+                <img src={detail1Img} alt="" />
+                <div className={styles.detail1Info}>
+                  <h5>Detail 1</h5>
+                  <p>
+                    Product description lorem ipsum dolor sit amet lorem ipsum
+                    dolor sit amet{" "}
+                  </p>
+                  <button className={styles.quantity}>Quantity 1</button>
+                </div>
+              </div>
+              <div className={styles.detail1}>
+                <img src={detail2Img} alt="" />
+                <div className={styles.detail1Info}>
+                  <h5>Detail 2</h5>
+                  <p>
+                    Product description lorem ipsum dolor sit amet lorem ipsum
+                    dolor sit amet{" "}
+                  </p>
+                  <button className={styles.quantity}>Quantity 2</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

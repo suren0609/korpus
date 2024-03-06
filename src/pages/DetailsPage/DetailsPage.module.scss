@@ -41,6 +41,8 @@
       align-items: flex-start;
       justify-content: space-between;
       width: 100%;
+      border-bottom: 1px solid #c6c6c6;
+      padding-bottom: 30px;
 
       .imgs {
         display: flex;
@@ -213,6 +215,31 @@
               font-weight: 500;
               color: #1a1a1a;
             }
+
+            input {
+              border: none;
+              outline: none;
+              background: transparent;
+              width: 40px;
+              // padding: 0 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              font-size: 20px;
+              font-weight: 500;
+              color: #1a1a1a;
+            }
+
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            input[type="number"] {
+              -moz-appearance: textfield;
+            }
           }
 
           .addCardBtn {
@@ -229,6 +256,196 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .schemeBlock {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 30px 0;
+    }
+
+    .doorsBlock {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .txtBlock {
+        width: 550px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+
+        h3 {
+          font-size: 16px;
+          font-weight: 500;
+          color: #000000;
+          line-height: 20px;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 400;
+          color: #101010;
+          padding: 0;
+          margin: 0;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 400;
+          color: #101010;
+        }
+
+        .assemblyBtn {
+          border: none;
+          padding: 0;
+          outline: none;
+          background: transparent;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: underline;
+          color: #1a1a1a;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .viewSectionsBlock {
+      width: 100%;
+      height: 541px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 50px 0;
+
+      .viewControls {
+        width: 50%;
+        height: 100%;
+        background: #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 60px;
+
+        .control {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 15px 0;
+
+          span {
+            font-size: 24px;
+            font-weight: 500;
+            color: #a3a3a3;
+            line-height: 28px;
+          }
+
+          .active {
+            color: #ffffff;
+          }
+        }
+      }
+
+      .views {
+        width: 50%;
+        height: 100%;
+        border-top: 1px solid #c6c6c6;
+        border-bottom: 1px solid #c6c6c6;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 60px;
+
+        .prodDetails {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+
+          h4 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-top: 0;
+            line-height: 28px;
+          }
+
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #000000;
+            margin: 0;
+            line-height: 20px;
+          }
+        }
+
+        .whatsIncluded {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+
+          h4 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 28px;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: 400;
+            color: #747474;
+            line-height: 17px;
+          }
+
+          .detail1 {
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 1px solid #c6c6c6;
+            max-width: 440px;
+            padding: 20px 0;
+
+            .detail1Info {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
+              height: 100%;
+              margin-left: 15px;
+
+              h5 {
+                font-size: 14px;
+                font-weight: 500;
+                color: #000000;
+                margin: 0;
+              }
+
+              p {
+                font-size: 12px;
+                font-weight: 400;
+                color: #a3a3a3;
+                line-height: 17px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+              }
+
+              .quantity {
+                background: #f2f2f2;
+                width: 97px;
+                height: 26px;
+                font-size: 12px;
+                font-weight: 400;
+                color: #414141;
+                border: none;
+                outline: none;
+              }
+            }
           }
         }
       }
