@@ -1,16 +1,30 @@
-import React, { useState } from "react";
-import img1 from "../../assets/detailImg.png";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import img2 from "../../assets/Image (4).png";
 import img3 from "../../assets/Image (5).png";
-import damperImg from "../../assets/Item Photo.png";
-import styles from "./DetailsPage.module.scss";
-import { useNavigate } from "react-router-dom";
-import schemeImg from "../../assets/scheme.png";
 import detail1Img from "../../assets/Imagedetail1.png";
 import detail2Img from "../../assets/Imagedetail2.png";
+import damperImg from "../../assets/Item Photo.png";
+import img1 from "../../assets/detailImg.png";
+import schemeImg from "../../assets/scheme.png";
+import SuggestedProdList from "../../components/SuggestedProdList/SuggestedProdList";
+import styles from "./DetailsPage.module.scss";
+import CustomRadio from "../../components/CustomRadio/CustomRadio";
+
+enum views {
+  PRODUCTDETAILS = "productDetails",
+  WHATSINCLUDED = "whatsIncluded",
+  RETURNPOLICY = "returnPolicy",
+}
 
 const DetailsPage = () => {
   const [itemCount, setItemCount] = useState<number>(1);
+  const [viewState, setViewState] = useState<string>(views.PRODUCTDETAILS);
+  const [kitchenTypeShow, setKitchenTypeShow] = useState<boolean>(false);
+
+  const kitchenTypeHandler = () => {
+    setKitchenTypeShow((prev) => !prev);
+  };
 
   const increment = () => {
     setItemCount((prev) => prev + 1);
@@ -23,6 +37,10 @@ const DetailsPage = () => {
     }
 
     setItemCount((prev) => prev - 1);
+  };
+
+  const viewChenger = (param: string) => {
+    setViewState(param);
   };
 
   console.log(itemCount);
@@ -68,23 +86,59 @@ const DetailsPage = () => {
             </div>
             <div className={styles.detailInfo}>
               <ul>
-                <li>
+                <li onClick={kitchenTypeHandler}>
                   <span>Kitchen type (w/o handle)</span>{" "}
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="7"
-                      viewBox="0 0 10 7"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
-                        fill="#747474"
-                      />
-                    </svg>
+                    {kitchenTypeShow ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.0625 7L0 5.9375L5 0.9375L10 5.9375L8.9375 7L5 3.0625L1.0625 7Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    )}
                   </span>
                 </li>
+                {kitchenTypeShow && (
+                  <ul>
+                  <CustomRadio
+                    name="withAHandle"
+                    id="withAHandle"
+                    value="With a handle"
+                    text="With a handle"
+                    onChange={() => {}}
+                    checked={false}
+                  />
+                  <CustomRadio
+                    name="withoutHandle"
+                    id="withoutHandle"
+                    value="Without handle"
+                    text="Without handle"
+                    onChange={() => {}}
+                    checked={false}
+                  />
+                </ul>
+                )}
+
                 <li>
                   <span>Color (american walnut) </span>{" "}
                   <span>
@@ -239,8 +293,15 @@ const DetailsPage = () => {
         </div>
         <div className={styles.viewSectionsBlock}>
           <div className={styles.viewControls}>
-            <div className={styles.control}>
-              <span className={styles.active}>Product Details</span>
+            <div
+              onClick={() => viewChenger(views.PRODUCTDETAILS)}
+              className={
+                viewState === views.PRODUCTDETAILS
+                  ? styles.controlActive
+                  : styles.control
+              }
+            >
+              <span>Product Details</span>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -251,12 +312,19 @@ const DetailsPage = () => {
                 >
                   <path
                     d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
-                    fill="white"
+                    fill="#A3A3A3"
                   />
                 </svg>
               </span>
             </div>
-            <div className={styles.control}>
+            <div
+              onClick={() => viewChenger(views.WHATSINCLUDED)}
+              className={
+                viewState === views.WHATSINCLUDED
+                  ? styles.controlActive
+                  : styles.control
+              }
+            >
               <span>What’s Included</span>
               <span>
                 <svg
@@ -273,8 +341,15 @@ const DetailsPage = () => {
                 </svg>
               </span>
             </div>
-            <div className={styles.control}>
-              <span>Measurements</span>
+            <div
+              onClick={() => viewChenger(views.RETURNPOLICY)}
+              className={
+                viewState === views.RETURNPOLICY
+                  ? styles.controlActive
+                  : styles.control
+              }
+            >
+              <span>Return Policy</span>
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -292,54 +367,91 @@ const DetailsPage = () => {
             </div>
           </div>
           <div className={styles.views}>
-            {/* <div className={styles.prodDetails}>
-              <h4>Product Details</h4>
-              <p>
-                With gray as a base, you create a warm and cozy feeling. Perfect
-                if you want a discreet color that goes with everything. Modern
-                or classic – you decide the style. <br />
-                <br />
-                Designed for sink and faucet with space for piping in the back
-                of the cabinet. The unique wedge dowels make assembly easy and
-                the fittings are nearly invisible. <br />
-                <br />
-                Choose to have the legs visible or hide them behind ENHET plinth
-                for a more uniform expression and easier cleaning. <br />
-                <br />
-                10-year Limited Warranty. Read about the terms in the Limited
-                Warranty brochure.
-              </p>
-            </div> */}
-            <div className={styles.whatsIncluded}>
-              <h4>What’s included</h4>
-              <p>
-                This product is made up of more than one component. You can find
-                the details of these components below.
-              </p>
-              <div className={styles.detail1}>
-                <img src={detail1Img} alt="" />
-                <div className={styles.detail1Info}>
-                  <h5>Detail 1</h5>
-                  <p>
-                    Product description lorem ipsum dolor sit amet lorem ipsum
-                    dolor sit amet{" "}
-                  </p>
-                  <button className={styles.quantity}>Quantity 1</button>
+            {viewState === views.PRODUCTDETAILS ? (
+              <div className={styles.prodDetails}>
+                <h4>Product Details</h4>
+                <p>
+                  With gray as a base, you create a warm and cozy feeling.
+                  Perfect if you want a discreet color that goes with
+                  everything. Modern or classic – you decide the style. <br />
+                  <br />
+                  Designed for sink and faucet with space for piping in the back
+                  of the cabinet. The unique wedge dowels make assembly easy and
+                  the fittings are nearly invisible. <br />
+                  <br />
+                  Choose to have the legs visible or hide them behind ENHET
+                  plinth for a more uniform expression and easier cleaning.{" "}
+                  <br />
+                  <br />
+                  10-year Limited Warranty. Read about the terms in the Limited
+                  Warranty brochure.
+                </p>
+              </div>
+            ) : viewState === views.WHATSINCLUDED ? (
+              <div className={styles.whatsIncluded}>
+                <h4>What’s included</h4>
+                <p>
+                  This product is made up of more than one component. You can
+                  find the details of these components below.
+                </p>
+                <div className={styles.detail1}>
+                  <img src={detail1Img} alt="" />
+                  <div className={styles.detail1Info}>
+                    <h5>Detail 1</h5>
+                    <p>
+                      Product description lorem ipsum dolor sit amet lorem ipsum
+                      dolor sit amet{" "}
+                    </p>
+                    <button className={styles.quantity}>Quantity 1</button>
+                  </div>
+                </div>
+                <div className={styles.detail1}>
+                  <img src={detail2Img} alt="" />
+                  <div className={styles.detail1Info}>
+                    <h5>Detail 2</h5>
+                    <p>
+                      Product description lorem ipsum dolor sit amet lorem ipsum
+                      dolor sit amet{" "}
+                    </p>
+                    <button className={styles.quantity}>Quantity 2</button>
+                  </div>
                 </div>
               </div>
-              <div className={styles.detail1}>
-                <img src={detail2Img} alt="" />
-                <div className={styles.detail1Info}>
-                  <h5>Detail 2</h5>
+            ) : (
+              <div className={styles.returnPolicy}>
+                <div className={styles.shippingReturn}>
+                  <h4>Shipping</h4>
                   <p>
-                    Product description lorem ipsum dolor sit amet lorem ipsum
-                    dolor sit amet{" "}
+                    We carry out our deliveries by contracted carriers,
+                    depending on the location. We deliver in most parts of the
+                    world all the products available for sale on the website. It
+                    is not possible to schedule a date and time for deliveries.
+                    The receipt of the goods can be carried out by third
+                    parties, such as doormen of condominiums and family members,
+                    as long as they sign the proof of receipt of the goods.
                   </p>
-                  <button className={styles.quantity}>Quantity 2</button>
+                </div>
+                <div className={styles.shippingReturn}>
+                  <h4>RETURN</h4>
+                  <p>
+                    You can ask for an exchange or return and still order parts
+                    after assembly. The deadline for requests is up to 07
+                    calendar days after delivery of the product. Illustrative
+                    photos. Reduction scales are not proportional. The
+                    decorative objects that appear in the products on offer are
+                    not included in their prices. We reserve the right to
+                    correct graphic errors. For more please visit the FAQ's
+                    section and/or our Terms and Condition of Use
+                  </p>
                 </div>
               </div>
-            </div>
+            )}
           </div>
+        </div>
+        <div className={styles.suggestedProds}>
+          <h1>Suggested products</h1>
+          <SuggestedProdList />
+          <button className={styles.allKorpuses}>All Korpuses</button>
         </div>
       </div>
     </div>

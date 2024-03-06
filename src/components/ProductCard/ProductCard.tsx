@@ -2,6 +2,7 @@ import React from "react";
 import img1 from "../../assets/image 32.png";
 import { NavLink as Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
+import { ROOT_PATH } from "../../rootPath";
 
 const ProductCard = () => {
   return (
@@ -34,7 +35,7 @@ const ProductCard = () => {
         <p>Kitchen</p>
         <div className={styles.nameNCost}>
           <Link
-            to="/Suren/korpus/korpuses/details"
+            to={`${ROOT_PATH}/korpuses/details`}
             className={styles.prodTitle}
           >
             Maximera

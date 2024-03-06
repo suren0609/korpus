@@ -34,12 +34,13 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 15px 0;
 
     .imgsAndDetails {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 60px;
       width: 100%;
       border-bottom: 1px solid #c6c6c6;
       padding-bottom: 30px;
@@ -118,6 +119,8 @@
               align-items: center;
               justify-content: space-between;
               padding: 5px 0;
+              cursor: pointer;
+              user-select: none;
 
               span {
                 font-size: 14px;
@@ -316,7 +319,7 @@
     }
 
     .viewSectionsBlock {
-      width: 100%;
+      width: 100vw;
       height: 541px;
       display: flex;
       align-items: center;
@@ -339,6 +342,7 @@
           align-items: center;
           justify-content: space-between;
           padding: 15px 0;
+          cursor: pointer;
 
           span {
             font-size: 24px;
@@ -346,9 +350,27 @@
             color: #a3a3a3;
             line-height: 28px;
           }
+        }
 
-          .active {
+        .controlActive {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 15px 0;
+          cursor: pointer;
+
+          span {
+            font-size: 24px;
+            font-weight: 500;
             color: #ffffff;
+            line-height: 28px;
+
+            svg {
+              path {
+                fill: #ffffff;
+              }
+            }
           }
         }
       }
@@ -448,6 +470,62 @@
             }
           }
         }
+
+        .returnPolicy {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+
+          .shippingReturn {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            h4 {
+              font-size: 24px;
+              font-weight: 500;
+              color: #1a1a1a;
+              line-height: 28px;
+              margin: 0;
+            }
+
+            p {
+              font-size: 16px;
+              font-weight: 400;
+              color: #000000;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
+    .suggestedProds {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      h1 {
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        line-height: 40px;
+        margin: 0;
+      }
+
+      .allKorpuses {
+        border: none;
+        outline: none;
+        width: 163px;
+        height: 47px;
+        background: #000000;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16.6px;
+        margin-top: 40px;
+        cursor: pointer;
       }
     }
   }

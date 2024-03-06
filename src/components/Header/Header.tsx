@@ -5,6 +5,7 @@ import Logo from "../Logo";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setLanguage } from "../../store/slices/languageSlice";
+import { ROOT_PATH } from "../../rootPath";
 
 const Header = () => {
   const [isLangActive, setLangActive] = useState<boolean>(false);
@@ -45,7 +46,7 @@ const Header = () => {
             <a href="#">Facade</a>
           </li>
           <li>
-            <Link className={styles.korpusLink} to="/Suren/korpus/korpuses">
+            <Link className={styles.korpusLink} to={`${ROOT_PATH}/korpuses`}>
               Korpus
             </Link>
           </li>
@@ -60,7 +61,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <Link to="/Suren/korpus/" className={styles.Logo}>
+      <Link to={`${ROOT_PATH}/`} className={styles.Logo}>
         <Logo />
       </Link>
 
