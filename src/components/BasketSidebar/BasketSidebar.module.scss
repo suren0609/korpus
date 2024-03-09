@@ -1,0 +1,188 @@
+.back {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  background: #00000078;
+  z-index: 2;
+
+  .BasketSidebar {
+    width: 498px;
+    height: 100vh;
+    position: absolute;
+    right: -100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #ffffff;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+
+    .basketHead {
+      width: 434px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0 10px 0;
+      border-bottom: 1px solid #c6c6c6;
+
+      h4 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    .basketBody {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      //   padding: 10px 20px;
+      width: 100%;
+      max-height: calc(100vh - 172px);
+      min-height: calc(100vh - 172px);
+
+      .basketList {
+        overflow-y: scroll;
+        width: 100%;
+        padding: 10px 20px;
+
+        .productCardInCart {
+          width: 100%;
+          height: 170px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 20px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #c6c6c6;
+          margin-bottom: 10px;
+
+          .prodInfo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+
+            .infoTop {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
+              justify-content: flex-start;
+
+              h4 {
+                margin: 0;
+                font-size: 14px;
+                font-weight: 500;
+                color: #1a1a1a;
+              }
+
+              p {
+                color: #a3a3a3;
+                font-size: 12px;
+                font-weight: 400;
+                margin: 0;
+              }
+
+              span {
+                font-size: 14px;
+                font-weight: 400;
+                color: #1a1a1a;
+                margin: 5px 0;
+              }
+            }
+
+            .quantDel {
+              width: 100%;
+              display: flex;
+              align-items: flex-start;
+              flex-direction: column;
+
+              .quant {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #1a1a1a;
+                }
+              }
+
+              .delete {
+                background: transparent;
+                border: none;
+                outline: none;
+                font-size: 14px;
+                font-weight: 400;
+                color: #747474;
+                text-decoration: underline;
+                cursor: pointer;
+                padding-left: 0;
+                padding-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .basketFoot {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px 20px 10px 20px;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+      gap: 20px;
+
+      .totalSum {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .total {
+          font-size: 16px;
+          font-weight: 400;
+          color: #171717;
+        }
+
+        .sum {
+          font-size: 16px;
+          font-weight: 500;
+          color: #171717;
+        }
+      }
+
+      .continueToCard {
+        width: 100%;
+        height: 48px;
+        background: #000000;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.active {
+  right: 0 !important;
+}

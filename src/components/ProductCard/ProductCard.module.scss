@@ -18,6 +18,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  img {
+    user-select: none;
   }
   .cardBottom {
     width: 100%;
@@ -44,7 +52,6 @@
         color: #1a1a1a;
         margin: 0;
         text-decoration: none;
-        
       }
 
       p {

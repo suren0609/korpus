@@ -8,8 +8,29 @@ const KorpusesPage = () => {
   const [isFasadeOpen, setFasadeOpen] = useState(false);
   const [isPosOpen, setPosOpen] = useState(false);
   const [isMaterialOpen, setMaterialOpen] = useState(false);
+  const [isColorOpen, setColorOpen] = useState(false);
   const [isWidthOpen, setWidthOpen] = useState(false);
   const [isHeightOpen, setHeightOpen] = useState(false);
+
+  const colors = [
+    "#E0C29E",
+    "#FFC164",
+    "#D6C382",
+    "#8C726F",
+    "#DC906F",
+    "#E09E9E",
+    "#9F9678",
+  ];
+
+  const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
+
+  const selectColor = (color: string) => {
+    setSelectedColor(color);
+  };
+
+  const colorToggle = () => {
+    setColorOpen((prev) => !prev);
+  };
 
   const heightToggle = () => {
     setHeightOpen((prev) => !prev);
@@ -101,7 +122,7 @@ const KorpusesPage = () => {
                       value="With a handle"
                       text="With a handle"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="withoutHandle"
@@ -109,7 +130,7 @@ const KorpusesPage = () => {
                       value="Without handle"
                       text="Without handle"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                   </ul>
                 )}
@@ -156,7 +177,7 @@ const KorpusesPage = () => {
                       value="With"
                       text="With"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="without"
@@ -164,7 +185,7 @@ const KorpusesPage = () => {
                       value="Without"
                       text="Without"
                       onChange={() => {}}
-                      checked={true}
+                      // checked={true}
                     />
                   </ul>
                 )}
@@ -211,7 +232,7 @@ const KorpusesPage = () => {
                       value="Above"
                       text="Above"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="below"
@@ -219,7 +240,7 @@ const KorpusesPage = () => {
                       value="Below"
                       text="Below"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                   </ul>
                 )}
@@ -266,7 +287,7 @@ const KorpusesPage = () => {
                       value="Wood"
                       text="Wood"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="solidWood"
@@ -274,7 +295,7 @@ const KorpusesPage = () => {
                       value="Solid wood"
                       text="Solid wood"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="glass"
@@ -282,7 +303,7 @@ const KorpusesPage = () => {
                       value="Glass"
                       text="Glass"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="woodVeneer"
@@ -290,29 +311,63 @@ const KorpusesPage = () => {
                       value="Wood veneer"
                       text="Wood veneer"
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                   </ul>
                 )}
               </li>
               <li>
-                <div className={styles.filterName}>
+                <div onClick={colorToggle} className={styles.filterName}>
                   <span>Color</span>{" "}
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="7"
-                      viewBox="0 0 10 7"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
-                        fill="#747474"
-                      />
-                    </svg>
+                    {isColorOpen ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.0625 7L0 5.9375L5 0.9375L10 5.9375L8.9375 7L5 3.0625L1.0625 7Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    )}
                   </span>
                 </div>
+                {isColorOpen && (
+                  <ul className={styles.colorList}>
+                    {colors.map((col, i) => (
+                      <li
+                        onClick={() => selectColor(col)}
+                        key={i}
+                        className={styles.colorItem}
+                        style={{
+                          border:
+                            selectedColor === col
+                              ? "1px solid #c6c6c6"
+                              : "none",
+                        }}
+                      >
+                        <span style={{ background: col }}></span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
               <li>
                 <div onClick={widthToggle} className={styles.filterName}>
@@ -356,7 +411,7 @@ const KorpusesPage = () => {
                       value='0-9"'
                       text='0-9"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="10-19"
@@ -364,7 +419,7 @@ const KorpusesPage = () => {
                       value='10-19"'
                       text='10-19"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="20-29"
@@ -372,7 +427,7 @@ const KorpusesPage = () => {
                       value='20-29"'
                       text='20-29"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="30-39"
@@ -380,7 +435,7 @@ const KorpusesPage = () => {
                       value='30-39"'
                       text='30-39"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                   </ul>
                 )}
@@ -427,7 +482,7 @@ const KorpusesPage = () => {
                       value='0-9"'
                       text='0-9"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="10"
@@ -435,7 +490,7 @@ const KorpusesPage = () => {
                       value='10"'
                       text='10"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="15"
@@ -443,7 +498,7 @@ const KorpusesPage = () => {
                       value='15"'
                       text='15"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="20"
@@ -451,7 +506,7 @@ const KorpusesPage = () => {
                       value='20"'
                       text='20"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="30"
@@ -459,7 +514,7 @@ const KorpusesPage = () => {
                       value='30"'
                       text='30"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                     <CustomRadio
                       name="40"
@@ -467,7 +522,7 @@ const KorpusesPage = () => {
                       value='40"'
                       text='40"'
                       onChange={() => {}}
-                      checked={false}
+                      // checked={false}
                     />
                   </ul>
                 )}

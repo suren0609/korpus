@@ -106,6 +106,33 @@
               cursor: pointer;
             }
 
+            .colorList {
+              display: flex;
+              align-items: flex-start;
+              flex-direction: row;
+              gap: 8px;
+              list-style: none;
+              padding: 0;
+
+              .colorItem {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+
+                span {
+                  width: 17px;
+                  height: 17px;
+                  border-radius: 50%;
+                  background: darkseagreen;
+                }
+              }
+            }
+
             span {
               font-size: 16px;
               font-weight: 500;

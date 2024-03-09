@@ -3,6 +3,8 @@
 * {
   box-sizing: border-box;
   font-family: "Graphik Trial", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 body {

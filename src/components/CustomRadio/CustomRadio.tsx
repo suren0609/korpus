@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./CustomRadio.module.scss";
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
   id: string;
   value: string;
   onChange: () => void;
-  checked: boolean;
+  // checked: boolean;
   text: string;
 }
 
@@ -15,19 +15,19 @@ const CustomRadio: FC<IProps> = ({
   id,
   value,
   onChange,
-  checked,
+  // checked,
   text,
 }) => {
   return (
     <label htmlFor={id} className={styles.radioLabel}>
       <input
         className={styles.radioInput}
-        type="radio"
+        type="checkbox"
         name={name}
         id={id}
         value={value}
         onChange={onChange}
-        checked={checked}
+        // checked={checked}
       />
       <span className={styles.customRadio} />
       {text}

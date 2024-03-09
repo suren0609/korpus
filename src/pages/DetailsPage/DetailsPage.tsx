@@ -21,6 +21,37 @@ const DetailsPage = () => {
   const [itemCount, setItemCount] = useState<number>(1);
   const [viewState, setViewState] = useState<string>(views.PRODUCTDETAILS);
   const [kitchenTypeShow, setKitchenTypeShow] = useState<boolean>(false);
+  const [colorShow, setColorShow] = useState<boolean>(false);
+  const [widthShow, setWidthShow] = useState<boolean>(false);
+  const [heightShow, setHeightShow] = useState<boolean>(false);
+
+  const colors = [
+    "#E0C29E",
+    "#FFC164",
+    "#D6C382",
+    "#8C726F",
+    "#DC906F",
+    "#E09E9E",
+    "#9F9678",
+  ];
+
+  const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
+
+  const selectColor = (color: string) => {
+    setSelectedColor(color);
+  };
+
+  const widthShowHandler = () => {
+    setWidthShow((prev) => !prev);
+  };
+
+  const heightShowHandler = () => {
+    setHeightShow((prev) => !prev);
+  };
+
+  const colorShowHandler = () => {
+    setColorShow((prev) => !prev);
+  };
 
   const kitchenTypeHandler = () => {
     setKitchenTypeShow((prev) => !prev);
@@ -120,76 +151,180 @@ const DetailsPage = () => {
                 </li>
                 {kitchenTypeShow && (
                   <ul>
-                  <CustomRadio
-                    name="withAHandle"
-                    id="withAHandle"
-                    value="With a handle"
-                    text="With a handle"
-                    onChange={() => {}}
-                    checked={false}
-                  />
-                  <CustomRadio
-                    name="withoutHandle"
-                    id="withoutHandle"
-                    value="Without handle"
-                    text="Without handle"
-                    onChange={() => {}}
-                    checked={false}
-                  />
-                </ul>
+                    <CustomRadio
+                      name="withAHandle"
+                      id="withAHandle"
+                      value="With a handle"
+                      text="With a handle"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                    <CustomRadio
+                      name="withoutHandle"
+                      id="withoutHandle"
+                      value="Without handle"
+                      text="Without handle"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                  </ul>
                 )}
 
-                <li>
+                <li onClick={colorShowHandler}>
                   <span>Color (american walnut) </span>{" "}
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="7"
-                      viewBox="0 0 10 7"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
-                        fill="#747474"
-                      />
-                    </svg>
+                    {colorShow ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.0625 7L0 5.9375L5 0.9375L10 5.9375L8.9375 7L5 3.0625L1.0625 7Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    )}
                   </span>
                 </li>
-                <li>
+                {colorShow && (
+                  <ul className={styles.colorList}>
+                    {colors.map((col, i) => (
+                      <li
+                        onClick={() => selectColor(col)}
+                        key={i}
+                        className={styles.colorItem}
+                        style={{
+                          border:
+                            selectedColor === col
+                              ? "1px solid #c6c6c6"
+                              : "none",
+                        }}
+                      >
+                        <span style={{ background: col }}></span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <li onClick={widthShowHandler}>
                   <span>Width (24”)</span>{" "}
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="7"
-                      viewBox="0 0 10 7"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
-                        fill="#747474"
-                      />
-                    </svg>
+                    {widthShow ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.0625 7L0 5.9375L5 0.9375L10 5.9375L8.9375 7L5 3.0625L1.0625 7Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    )}
                   </span>
                 </li>
-                <li>
+                {widthShow && (
+                  <ul>
+                    <CustomRadio
+                      name="32x32"
+                      id="32x32"
+                      value="32x32"
+                      text="32x32"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                    <CustomRadio
+                      name="34x34"
+                      id="34x34"
+                      value="34x34"
+                      text="34x34"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                  </ul>
+                )}
+                <li onClick={heightShowHandler}>
                   <span>Height (30”) </span>{" "}
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="10"
-                      height="7"
-                      viewBox="0 0 10 7"
-                      fill="none"
-                    >
-                      <path
-                        d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
-                        fill="#747474"
-                      />
-                    </svg>
+                    {heightShow ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.0625 7L0 5.9375L5 0.9375L10 5.9375L8.9375 7L5 3.0625L1.0625 7Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="7"
+                        viewBox="0 0 10 7"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z"
+                          fill="#747474"
+                        />
+                      </svg>
+                    )}
                   </span>
                 </li>
+                {heightShow && (
+                  <ul>
+                    <CustomRadio
+                      name="32x321"
+                      id="32x321"
+                      value="32x32"
+                      text="32x32"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                    <CustomRadio
+                      name="34x341"
+                      id="34x341"
+                      value="34x34"
+                      text="34x34"
+                      onChange={() => {}}
+                      // checked={false}
+                    />
+                  </ul>
+                )}
               </ul>
             </div>
             <div className={styles.damperBlock}>

@@ -6,11 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setLanguage } from "../../store/slices/languageSlice";
 import { ROOT_PATH } from "../../rootPath";
+import {
+  basketSliceSelecror,
+  languageSliceSelector,
+} from "../../store/selectors";
+import { setBasketActive } from "../../store/slices/basketSlice";
 
 const Header = () => {
   const [isLangActive, setLangActive] = useState<boolean>(false);
 
-  const { language } = useSelector((state: RootState) => state.language);
+  const { language } = useSelector(languageSliceSelector);
+  const { isBasketActive } = useSelector(basketSliceSelecror);
 
   const languages = ["English", "Armenian", "Russian"];
 
@@ -20,6 +26,9 @@ const Header = () => {
     setLangActive((prev) => !prev);
   };
 
+  const basketSidebarHandler = () => {
+    dispatch(setBasketActive(!isBasketActive));
+  };
   const hideLanguagesPopup = (e: any) => {
     console.log(e.relatedTarget?.dataset?.name);
 
@@ -67,7 +76,7 @@ const Header = () => {
 
       <div className={styles.searchNLang}>
         <div className={styles.searchNBasket}>
-          <div className={styles.search}>
+          <button className={styles.search}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -80,8 +89,8 @@ const Header = () => {
                 fill="black"
               />
             </svg>
-          </div>
-          <div className={styles.face}>
+          </button>
+          <button className={styles.face}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -94,8 +103,8 @@ const Header = () => {
                 fill="black"
               />
             </svg>
-          </div>
-          <div className={styles.basket}>
+          </button>
+          <button onClick={basketSidebarHandler} className={styles.basket}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -108,7 +117,7 @@ const Header = () => {
                 fill="black"
               />
             </svg>
-          </div>
+          </button>
         </div>
         <div className={styles.lang} onBlur={hideLanguagesPopup} tabIndex={0}>
           <button className={styles.selected} onClick={showLangHandler}>
