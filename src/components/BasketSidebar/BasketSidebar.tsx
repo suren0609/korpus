@@ -9,7 +9,7 @@ import { ROOT_PATH } from "../../rootPath";
 import Count from "../Count/Count";
 
 const BasketSidebar = () => {
-  const { isBasketActive } = useSelector(basketSliceSelecror);
+  const { isBasketActive, basket } = useSelector(basketSliceSelecror);
 
   const dispatch = useDispatch();
 
@@ -65,109 +65,27 @@ const BasketSidebar = () => {
         </div>
         <div className={styles.basketBody}>
           <div className={styles.basketList}>
-            
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
+            {basket.length
+              ? basket.map((prod) => (
+                  <div key={prod.id} className={styles.productCardInCart}>
+                    <img src={prodInCartImg1} alt="" />
+                    <div className={styles.prodInfo}>
+                      <div className={styles.infoTop}>
+                        <h4>Base cabinet</h4>
+                        <p>REF. 1210/300</p>
+                        <span>{prod.price}</span>
+                      </div>
+                      <div className={styles.quantDel}>
+                        <div className={styles.quant}>
+                          <span>Quantity</span>
+                          <Count />
+                        </div>
+                        <button className={styles.delete}>Delete</button>
+                      </div>
+                    </div>
                   </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
-                  </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
-                  </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
-                  </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
-                  </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.productCardInCart}>
-              <img src={prodInCartImg1} alt="" />
-              <div className={styles.prodInfo}>
-                <div className={styles.infoTop}>
-                  <h4>Base cabinet</h4>
-                  <p>REF. 1210/300</p>
-                  <span>47.000 amd</span>
-                </div>
-                <div className={styles.quantDel}>
-                  <div className={styles.quant}>
-                    <span>Quantity</span>
-                    <Count />
-                  </div>
-                  <button className={styles.delete}>Delete</button>
-                </div>
-              </div>
-            </div>
+                ))
+              : "Empty"}
           </div>
         </div>
         <div className={styles.basketFoot}>

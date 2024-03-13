@@ -11,7 +11,7 @@ const RoutesComponent = () => {
     <Routes>
       <Route path={`${ROOT_PATH}/`} element={<HomePage />} />
       <Route path={`${ROOT_PATH}/korpuses`} element={<KorpusesPage />} />
-      <Route path={`${ROOT_PATH}/korpuses/details`} element={<DetailsPage />} />
+      <Route path={`${ROOT_PATH}/korpuses/:id`} element={<DetailsPage />} />
       <Route path={`${ROOT_PATH}/cart`} element={<BasketPage />} />
     </Routes>
   );

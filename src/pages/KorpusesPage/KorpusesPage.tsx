@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./KorpusesPage.module.scss";
 import CustomRadio from "../../components/CustomRadio";
 import ProductCard from "../../components/ProductCard";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const KorpusesPage = () => {
   const [isKitchenTypeOpen, setKitchenTypeOpen] = useState(false);
@@ -23,6 +25,8 @@ const KorpusesPage = () => {
   ];
 
   const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
+
+  const { products } = useSelector((state: RootState) => state.product);
 
   const selectColor = (color: string) => {
     setSelectedColor(color);
@@ -568,6 +572,10 @@ const KorpusesPage = () => {
           </div>
         </div>
         <div className={styles.productsBlock}>
+          {products.map((el) => (
+            <ProductCard id={el.id} />
+          ))}
+          {/* <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
@@ -575,8 +583,7 @@ const KorpusesPage = () => {
           <ProductCard />
           <ProductCard />
           <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard /> */}
         </div>
       </div>
     </div>

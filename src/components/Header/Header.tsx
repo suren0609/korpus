@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import { NavLink as Link } from "react-router-dom";
 import Logo from "../Logo";
@@ -16,7 +16,31 @@ const Header = () => {
   const [isLangActive, setLangActive] = useState<boolean>(false);
 
   const { language } = useSelector(languageSliceSelector);
-  const { isBasketActive } = useSelector(basketSliceSelecror);
+  const { isBasketActive, basket } = useSelector(basketSliceSelecror);
+  const [isVisible, setIsVisible] = useState(true);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [curScrollY, setCurScrollY] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [window.scrollY]);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    setCurScrollY(window.scrollY);
+
+    setPrevScrollY(currentScrollY);
+    if (currentScrollY < prevScrollY) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+
+    setPrevScrollY(currentScrollY);
+  };
 
   const languages = ["English", "Armenian", "Russian"];
 
@@ -45,7 +69,15 @@ const Header = () => {
   };
 
   return (
-    <div className={styles.Header}>
+    <div
+      className={
+        isVisible
+          ? curScrollY === 0
+            ? `${styles.Header} ${styles.show} ${styles.shadowNone}`
+            : `${styles.Header} ${styles.show}`
+          : `${styles.Header} ${styles.hide}`
+      }
+    >
       <nav>
         <ul>
           <li>
@@ -117,6 +149,7 @@ const Header = () => {
                 fill="black"
               />
             </svg>
+            {basket.length ? <span>({basket.length})</span> : null}
           </button>
         </div>
         <div className={styles.lang} onBlur={hideLanguagesPopup} tabIndex={0}>

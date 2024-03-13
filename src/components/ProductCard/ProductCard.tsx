@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import img1 from "../../assets/image 32.png";
 import { NavLink as Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 import { ROOT_PATH } from "../../rootPath";
 
-const ProductCard = () => {
+interface IProps {
+  id: number;
+}
+
+const ProductCard: FC<IProps> = ({ id }) => {
   const [selected, setSelected] = useState<boolean>(false);
   const [favourite, setFavourite] = useState<boolean>(false);
 
@@ -69,10 +73,7 @@ const ProductCard = () => {
       <div className={styles.cardBottom}>
         <p>Kitchen</p>
         <div className={styles.nameNCost}>
-          <Link
-            to={`${ROOT_PATH}/korpuses/details`}
-            className={styles.prodTitle}
-          >
+          <Link to={`${ROOT_PATH}/korpuses/${id}`} className={styles.prodTitle}>
             Maximera
           </Link>
           <p>23,000AMD</p>

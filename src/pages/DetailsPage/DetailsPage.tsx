@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import img2 from "../../assets/Image (4).png";
 import img3 from "../../assets/Image (5).png";
 import detail1Img from "../../assets/Imagedetail1.png";
@@ -10,6 +10,10 @@ import schemeImg from "../../assets/scheme.png";
 import SuggestedProdList from "../../components/SuggestedProdList/SuggestedProdList";
 import styles from "./DetailsPage.module.scss";
 import CustomRadio from "../../components/CustomRadio/CustomRadio";
+import { setBasketItem } from "../../store/slices/basketSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { IProd } from "../../store/types";
 
 enum views {
   PRODUCTDETAILS = "productDetails",
@@ -35,7 +39,20 @@ const DetailsPage = () => {
     "#9F9678",
   ];
 
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+
   const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
+
+  const { products } = useSelector((state: RootState) => state.product);
+
+  const currtentProd = products.find((el) => el.id.toString() === id);
+  console.log(products);
+
+  const addCartHandler = () => {
+    if (currtentProd) dispatch(setBasketItem(currtentProd));
+  };
 
   const selectColor = (color: string) => {
     setSelectedColor(color);
@@ -73,8 +90,6 @@ const DetailsPage = () => {
   const viewChenger = (param: string) => {
     setViewState(param);
   };
-
-  console.log(itemCount);
 
   const navigate = useNavigate();
   return (
@@ -399,7 +414,9 @@ const DetailsPage = () => {
                   </svg>
                 </button>
               </div>
-              <button className={styles.addCardBtn}>Add to card</button>
+              <button onClick={addCartHandler} className={styles.addCardBtn}>
+                Add to card
+              </button>
             </div>
           </div>
         </div>

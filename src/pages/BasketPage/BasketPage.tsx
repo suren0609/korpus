@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import productImg1 from "../../assets/ImageProduct1.png";
 import styles from "./BasketPage.module.scss";
 import ProductInCart from "../../components/ProductInCart/ProductInCart";
+import { useSelector } from "react-redux";
+import { basketSliceSelecror } from "../../store/selectors";
 
 const BasketPage = () => {
   const [itemCount, setItemCount] = useState<number>(1);
+
+  const { basket } = useSelector(basketSliceSelecror);
 
   const increment = () => {
     setItemCount((prev) => prev + 1);
@@ -25,10 +29,13 @@ const BasketPage = () => {
       </div>
       <div className={styles.basketContent}>
         <div className={styles.products}>
+          {
+            basket.map(el => <ProductInCart key={el.id} />)
+          }
+          {/* <ProductInCart />
           <ProductInCart />
           <ProductInCart />
-          <ProductInCart />
-          <ProductInCart />
+          <ProductInCart /> */}
         </div>
         <div className={styles.orderSummary}>
           <div className={styles.orderBlock}>
