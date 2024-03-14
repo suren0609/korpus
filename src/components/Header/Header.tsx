@@ -32,12 +32,12 @@ const Header = () => {
     const currentScrollY = window.scrollY;
     setCurScrollY(window.scrollY);
 
-    setPrevScrollY(currentScrollY);
-    if (currentScrollY < prevScrollY) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    // setPrevScrollY(currentScrollY);
+    // if (currentScrollY < prevScrollY) {
+    //   setIsVisible(true);
+    // } else {
+    //   setIsVisible(false);
+    // }
 
     setPrevScrollY(currentScrollY);
   };

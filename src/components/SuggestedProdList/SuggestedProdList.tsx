@@ -2,12 +2,18 @@ import img2 from "../../assets/image 1.png";
 import img1 from "../../assets/image 16.png";
 import img3 from "../../assets/image 17.png";
 import img4 from "../../assets/image 2.png";
+import ProductCard from "../ProductCard";
 import styles from "./SuggestedProdList.module.scss";
 
 const SuggestedProdList = () => {
+  const ids = [1, 2, 3, 4];
   return (
     <div className={styles.productList}>
-      <div className={styles.card}>
+      {ids.map((el) => (
+        <ProductCard key={el} id={el} inGrid={false} />
+      ))}
+
+      {/* <div className={styles.card}>
         <div className={styles.cardTop}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +144,7 @@ const SuggestedProdList = () => {
             <p>69,000AMD</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

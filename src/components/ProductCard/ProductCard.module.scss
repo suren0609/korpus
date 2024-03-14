@@ -63,3 +63,9 @@
     }
   }
 }
+
+.inGrid {
+  &:first-child {
+    border-left: none;
+  }
+}

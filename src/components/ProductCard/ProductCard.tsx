@@ -6,9 +6,10 @@ import { ROOT_PATH } from "../../rootPath";
 
 interface IProps {
   id: number;
+  inGrid: boolean;
 }
 
-const ProductCard: FC<IProps> = ({ id }) => {
+const ProductCard: FC<IProps> = ({ id, inGrid }) => {
   const [selected, setSelected] = useState<boolean>(false);
   const [favourite, setFavourite] = useState<boolean>(false);
 
@@ -20,7 +21,7 @@ const ProductCard: FC<IProps> = ({ id }) => {
     setSelected((prev) => !prev);
   };
   return (
-    <div className={styles.card}>
+    <div className={inGrid ? styles.card : `${styles.card} ${styles.inGrid}`}>
       <div className={styles.cardTop}>
         <svg
           onClick={selectToggle}
