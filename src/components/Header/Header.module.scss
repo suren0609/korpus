@@ -69,8 +69,19 @@
       .face {
         border: none;
         background: transparent;
-
+        display: flex;
+        align-items: center;
         cursor: pointer;
+        position: relative;
+
+        span {
+          position: absolute;
+          top: -2px;
+          left: 25px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #000000;
+        }
       }
 
       .basket {
@@ -88,7 +99,6 @@
           font-size: 14px;
           font-weight: 400;
           color: #000000;
-          
         }
       }
     }

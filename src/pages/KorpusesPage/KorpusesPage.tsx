@@ -573,7 +573,7 @@ const KorpusesPage = () => {
         </div>
         <div className={styles.productsBlock}>
           {products.map((el) => (
-            <ProductCard id={el.id} inGrid={true} />
+            <ProductCard prod={el} inGrid={true} />
           ))}
           {/* <ProductCard />
           <ProductCard />

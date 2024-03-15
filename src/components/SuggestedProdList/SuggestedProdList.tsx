@@ -1,16 +1,18 @@
+import { useSelector } from "react-redux";
 import img2 from "../../assets/image 1.png";
 import img1 from "../../assets/image 16.png";
 import img3 from "../../assets/image 17.png";
 import img4 from "../../assets/image 2.png";
 import ProductCard from "../ProductCard";
 import styles from "./SuggestedProdList.module.scss";
+import { productSliceSelector } from "../../store/selectors";
 
 const SuggestedProdList = () => {
-  const ids = [1, 2, 3, 4];
+  const { products } = useSelector(productSliceSelector);
   return (
     <div className={styles.productList}>
-      {ids.map((el) => (
-        <ProductCard key={el} id={el} inGrid={false} />
+      {products.slice(0, 4).map((el) => (
+        <ProductCard key={el.id} prod={el} inGrid={false} />
       ))}
 
       {/* <div className={styles.card}>

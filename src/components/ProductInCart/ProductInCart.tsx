@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import productImg1 from "../../assets/ImageProduct1.png";
 import styles from "./ProductInCart.module.scss";
 import CustomRadio from "../CustomRadio/CustomRadio";
+import { IProd } from "../../store/types";
+import { useDispatch } from "react-redux";
+import { deleteFromBasket } from "../../store/slices/basketSlice";
 
-const ProductInCart = () => {
+interface IProps {
+  prod: IProd;
+}
+
+const ProductInCart: FC<IProps> = ({ prod }) => {
   const [itemCount, setItemCount] = useState<number>(1);
   const [isWidthOpen, setWidthOpen] = useState<boolean>(false);
   const [isHeightOpen, setHeightOpen] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   const widthToggle = () => {
     setWidthOpen((prev) => !prev);
@@ -28,6 +37,11 @@ const ProductInCart = () => {
 
     setItemCount((prev) => prev - 1);
   };
+
+  const deleteFromCart = () => {
+    dispatch(deleteFromBasket(prod.id));
+  };
+
   return (
     <div className={styles.product}>
       <img src={productImg1} alt="" />
@@ -207,7 +221,9 @@ const ProductInCart = () => {
           </div>
           <div className={styles.favAndDelete}>
             <button className={styles.fav}>Save to favorites</button>
-            <button className={styles.del}>Delete</button>
+            <button onClick={deleteFromCart} className={styles.del}>
+              Delete
+            </button>
           </div>
         </div>
       </div>

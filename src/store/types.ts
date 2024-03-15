@@ -5,11 +5,15 @@ export interface ILanguageState {
 export interface IProd {
   name: string;
   category: string;
-  price: string;
+  price: number;
   id: number;
 }
 
 export interface IBasketState {
   basket: IProd[];
   isBasketActive: boolean;
+}
+
+export interface IFavState {
+  favourite: IProd[];
 }

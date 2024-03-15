@@ -29,9 +29,9 @@ const BasketPage = () => {
       </div>
       <div className={styles.basketContent}>
         <div className={styles.products}>
-          {
-            basket.map(el => <ProductInCart key={el.id} />)
-          }
+          {basket.map((el) => (
+            <ProductInCart key={el.id} prod={el} />
+          ))}
           {/* <ProductInCart />
           <ProductInCart />
           <ProductInCart />

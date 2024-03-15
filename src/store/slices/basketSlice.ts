@@ -16,7 +16,11 @@ export const basketSlice = createSlice({
     setBasketActive: (state, { payload }: PayloadAction<boolean>) => {
       state.isBasketActive = payload;
     },
+    deleteFromBasket: (state, { payload }: PayloadAction<number>) => {
+      state.basket = state.basket.filter((el) => el.id !== payload);
+    },
   },
 });
 
-export const { setBasketActive, setBasketItem } = basketSlice.actions;
+export const { setBasketActive, setBasketItem, deleteFromBasket } =
+  basketSlice.actions;

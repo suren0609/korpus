@@ -144,8 +144,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
-                
 
                 span {
                   width: 17px;
@@ -287,6 +285,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+
+            span {
+              margin-left: 10px;
+            }
           }
         }
       }

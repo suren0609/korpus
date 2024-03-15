@@ -3,28 +3,48 @@ import img1 from "../../assets/image 32.png";
 import { NavLink as Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 import { ROOT_PATH } from "../../rootPath";
+import { IProd } from "../../store/types";
+import { useDispatch, useSelector } from "react-redux";
+import { basketSliceSelecror, favSliceSelector } from "../../store/selectors";
+import {
+  deleteFromBasket,
+  setBasketItem,
+} from "../../store/slices/basketSlice";
+import { deleteFromFav, setItemToFav } from "../../store/slices/favSlice";
+import { moneyConvert } from "../../helpers/convertMoneyView";
 
 interface IProps {
-  id: number;
+  prod: IProd;
   inGrid: boolean;
 }
 
-const ProductCard: FC<IProps> = ({ id, inGrid }) => {
+const ProductCard: FC<IProps> = ({ prod, inGrid }) => {
   const [selected, setSelected] = useState<boolean>(false);
-  const [favourite, setFavourite] = useState<boolean>(false);
+  const [isFavourite, setFavourite] = useState<boolean>(false);
+
+  const { basket } = useSelector(basketSliceSelecror);
+  const { favourite } = useSelector(favSliceSelector);
+
+  const dispatch = useDispatch();
 
   const favToggle = () => {
+    isFavourite
+      ? dispatch(deleteFromFav(prod.id))
+      : dispatch(setItemToFav(prod));
     setFavourite((prev) => !prev);
   };
 
-  const selectToggle = () => {
+  const addToBasket = (prod: IProd) => {
+    selected
+      ? dispatch(deleteFromBasket(prod.id))
+      : dispatch(setBasketItem(prod));
     setSelected((prev) => !prev);
   };
   return (
     <div className={inGrid ? styles.card : `${styles.card} ${styles.inGrid}`}>
       <div className={styles.cardTop}>
         <svg
-          onClick={selectToggle}
+          onClick={() => addToBasket(prod)}
           xmlns="http://www.w3.org/2000/svg"
           width="14"
           height="14"
@@ -35,12 +55,12 @@ const ProductCard: FC<IProps> = ({ id, inGrid }) => {
             cx="7"
             cy="7"
             r="6.5"
-            fill={selected ? "#000000" : "white"}
+            fill={basket.includes(prod) ? "#000000" : "white"}
             stroke="#E4E4E4"
           />
         </svg>
 
-        {favourite ? (
+        {favourite.includes(prod) ? (
           <svg
             onClick={favToggle}
             xmlns="http://www.w3.org/2000/svg"
@@ -72,12 +92,15 @@ const ProductCard: FC<IProps> = ({ id, inGrid }) => {
       </div>
       <img src={img1} alt="" />
       <div className={styles.cardBottom}>
-        <p>Kitchen</p>
+        <p>{prod.category}</p>
         <div className={styles.nameNCost}>
-          <Link to={`${ROOT_PATH}/korpuses/${id}`} className={styles.prodTitle}>
-            Maximera
+          <Link
+            to={`${ROOT_PATH}/korpuses/${prod.id}`}
+            className={styles.prodTitle}
+          >
+            {prod.name}
           </Link>
-          <p>23,000AMD</p>
+          <p>{moneyConvert(prod.price)}AMD</p>
         </div>
       </div>
     </div>

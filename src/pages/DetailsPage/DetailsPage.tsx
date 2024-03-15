@@ -10,10 +10,17 @@ import schemeImg from "../../assets/scheme.png";
 import SuggestedProdList from "../../components/SuggestedProdList/SuggestedProdList";
 import styles from "./DetailsPage.module.scss";
 import CustomRadio from "../../components/CustomRadio/CustomRadio";
-import { setBasketItem } from "../../store/slices/basketSlice";
+import {
+  deleteFromBasket,
+  setBasketItem,
+} from "../../store/slices/basketSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { IProd } from "../../store/types";
+import {
+  basketSliceSelecror,
+  productSliceSelector,
+} from "../../store/selectors";
 
 enum views {
   PRODUCTDETAILS = "productDetails",
@@ -43,9 +50,11 @@ const DetailsPage = () => {
 
   const { id } = useParams();
 
+  const { basket } = useSelector(basketSliceSelecror);
+
   const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
 
-  const { products } = useSelector((state: RootState) => state.product);
+  const { products } = useSelector(productSliceSelector);
 
   const currtentProd = products.find((el) => el.id.toString() === id);
   console.log(products);
@@ -54,6 +63,9 @@ const DetailsPage = () => {
     if (currtentProd) dispatch(setBasketItem(currtentProd));
   };
 
+  const deleteFromCart = (id: string) => {
+    if (id !== undefined) dispatch(deleteFromBasket(+id));
+  };
   const selectColor = (color: string) => {
     setSelectedColor(color);
   };
@@ -414,9 +426,42 @@ const DetailsPage = () => {
                   </svg>
                 </button>
               </div>
-              <button onClick={addCartHandler} className={styles.addCardBtn}>
-                Add to card
-              </button>
+              {currtentProd ? (
+                basket.includes(currtentProd) ? (
+                  <button
+                    onClick={() => deleteFromCart(id as string)}
+                    className={styles.addCardBtn}
+                  >
+                    Added{" "}
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.53484 5.25988L1.99914 4.78786L5.13962 7.98056L5.49607 8.34295L5.85253 7.98056L13.0012 0.713011L13.4655 1.18503L5.49607 9.28699L1.53484 5.25988Z"
+                          fill="white"
+                          stroke="white"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={addCartHandler}
+                    className={styles.addCardBtn}
+                  >
+                    Add to card
+                  </button>
+                )
+              ) : (
+                <button onClick={addCartHandler} className={styles.addCardBtn}>
+                  Add to card
+                </button>
+              )}
             </div>
           </div>
         </div>

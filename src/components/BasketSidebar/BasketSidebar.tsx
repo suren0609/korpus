@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./BasketSidebar.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { basketSliceSelecror } from "../../store/selectors";
-import { setBasketActive } from "../../store/slices/basketSlice";
+import {
+  deleteFromBasket,
+  setBasketActive,
+} from "../../store/slices/basketSlice";
 import { useNavigate } from "react-router-dom";
 import prodInCartImg1 from "../../assets/ImageInCart.png";
 import { ROOT_PATH } from "../../rootPath";
 import Count from "../Count/Count";
+import { moneyConvert } from "../../helpers/convertMoneyView";
 
 const BasketSidebar = () => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const { isBasketActive, basket } = useSelector(basketSliceSelecror);
+
+  useEffect(() => {
+    const total = basket.reduce((acc, cur) => acc + cur.price, 0);
+    setTotalPrice(total);
+  }, [basket]);
 
   const dispatch = useDispatch();
 
@@ -30,6 +40,10 @@ const BasketSidebar = () => {
       document.body.style.overflow = "unset";
     }
   }, [isBasketActive]);
+
+  const deleteFromCart = (id: number) => {
+    dispatch(deleteFromBasket(id));
+  };
 
   return (
     <div
@@ -73,14 +87,19 @@ const BasketSidebar = () => {
                       <div className={styles.infoTop}>
                         <h4>Base cabinet</h4>
                         <p>REF. 1210/300</p>
-                        <span>{prod.price}</span>
+                        <span>{moneyConvert(prod.price)}AMD</span>
                       </div>
                       <div className={styles.quantDel}>
                         <div className={styles.quant}>
                           <span>Quantity</span>
                           <Count />
                         </div>
-                        <button className={styles.delete}>Delete</button>
+                        <button
+                          onClick={() => deleteFromCart(prod.id)}
+                          className={styles.delete}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -91,7 +110,7 @@ const BasketSidebar = () => {
         <div className={styles.basketFoot}>
           <div className={styles.totalSum}>
             <span className={styles.total}>Total</span>
-            <span className={styles.sum}>350,000AMD</span>
+            <span className={styles.sum}>{moneyConvert(totalPrice)}AMD</span>
           </div>
           <button onClick={navigateToCart} className={styles.continueToCard}>
             Continue to card

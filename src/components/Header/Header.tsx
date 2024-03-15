@@ -8,6 +8,7 @@ import { setLanguage } from "../../store/slices/languageSlice";
 import { ROOT_PATH } from "../../rootPath";
 import {
   basketSliceSelecror,
+  favSliceSelector,
   languageSliceSelector,
 } from "../../store/selectors";
 import { setBasketActive } from "../../store/slices/basketSlice";
@@ -17,6 +18,7 @@ const Header = () => {
 
   const { language } = useSelector(languageSliceSelector);
   const { isBasketActive, basket } = useSelector(basketSliceSelecror);
+  const { favourite } = useSelector(favSliceSelector);
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [curScrollY, setCurScrollY] = useState(0);
@@ -135,6 +137,7 @@ const Header = () => {
                 fill="black"
               />
             </svg>
+            {favourite.length ? <span>({favourite.length})</span> : null}
           </button>
           <button onClick={basketSidebarHandler} className={styles.basket}>
             <svg
