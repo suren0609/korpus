@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./HomePage.module.scss";
 import DesignScratch from "../../components/DesignScratch";
 import Suggested from "../../components/Suggested";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import productImg1 from "../../assets/ImageProduct1.png";
 import styles from "./BasketPage.module.scss";
 import ProductInCart from "../../components/ProductInCart/ProductInCart";

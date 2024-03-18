@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./KorpusesPage.module.scss";
 import CustomRadio from "../../components/CustomRadio";
 import ProductCard from "../../components/ProductCard";
@@ -27,6 +27,7 @@ const KorpusesPage = () => {
   const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
 
   const { products } = useSelector((state: RootState) => state.product);
+
 
   const selectColor = (color: string) => {
     setSelectedColor(color);
