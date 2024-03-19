@@ -13,8 +13,9 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    localStorage.setItem("scrollPosition", JSON.stringify({ x: 0, y: 0 }));
   }, [pathname]);
+
+  console.log("render");
 
   return (
     <div className={styles.App}>
